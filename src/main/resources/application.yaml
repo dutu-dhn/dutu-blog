@@ -1,0 +1,23 @@
+spring:
+  #数据库配置
+  datasource:
+    url: jdbc:mysql://121.196.172.144:3306/blog_data
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+mybatis-plus:
+  configuration:
+    log-impl:  org.apache.ibatis.logging.stdout.StdOutImpl
+loggoing:
+  level:
+    cn:
+      shangze:
+        boot:
+          modules:
+            oa:
+              mapper=debug:
