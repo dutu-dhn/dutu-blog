@@ -1,12 +1,14 @@
 package com.dutu.dutublog.controller;
 
 import com.dutu.dutublog.bean.Admin;
+import com.dutu.dutublog.bean.Bt;
 import com.dutu.dutublog.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,14 +37,21 @@ public class AdminController {
         return "index";
     }
 
-    /**
-     * 去博客内容页面
-     * @return
-     */
-    @RequestMapping("/article")
-    public String toArticle(){
 
-        return "article";
+
+    @GetMapping("/Edit")
+    public String toEdit(){
+        return "textpostmarkdown";
     }
+
+
+    @PostMapping("/savebt")
+    public String saveBt(Bt bt){
+
+
+        return "textpostmarkdown";
+    }
+
+
 
 }

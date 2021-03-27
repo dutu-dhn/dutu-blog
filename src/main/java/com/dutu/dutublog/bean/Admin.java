@@ -1,9 +1,12 @@
 package com.dutu.dutublog.bean;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 @Data
 public class Admin {
+    @TableId(value = "uid",type = IdType.AUTO)
     private Integer uid;
 
     private String uname;

@@ -1,17 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width" />
     <title>文章阅读</title>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="layui/css/layui.css" />
-    <link rel="stylesheet" href="css/master.css" />
-    <link rel="stylesheet" href="css/gloable.css" />
-    <link rel="stylesheet" href="css/nprogress.css" />
-    <link rel="stylesheet" href="css/blog.css" />
+<!--    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">-->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/layui/css/layui.css" />
+    <link rel="stylesheet" href="/css/master.css" />
+    <link rel="stylesheet" href="/css/gloable.css" />
+    <link rel="stylesheet" href="/css/nprogress.css" />
+    <link rel="stylesheet" href="/css/blog.css" />
+
+    <link rel="stylesheet" href="/editor.md-master/css/editormd.css"/>
+
+    <script src="/editor.md-master/examples/js/jquery.min.js"></script>
+    <script src="/editor.md-master/lib/marked.min.js"></script>
+    <script src="/editor.md-master/lib/prettify.min.js"></script>
+    <script src="/editor.md-master/lib/raphael.min.js"></script>
+    <script src="/editor.md-master/lib/underscore.min.js"></script>
+    <script src="/editor.md-master/lib/sequence-diagram.min.js"></script>
+    <script src="/editor.md-master/lib/flowchart.min.js"></script>
+    <script src="/editor.md-master/lib/jquery.flowchart.min.js"></script>
+    <script src="/editor.md-master/editormd.amd.min.js"></script>
+
+    <script type="text/javascript">
+        var testEditor;
+        $(function () {
+            testEditor = editormd.markdownToHTML("doc-content", {//注意：这里是上面DIV的id
+                htmlDecode: "style,script,iframe",
+                emoji: true,
+                taskList: true,
+                tex: true, // 默认不解析
+                flowChart: true, // 默认不解析
+                sequenceDiagram: true, // 默认不解析
+                codeFold: true,
+            });});
+    </script>
 </head>
 <body>
     <div class="header">
@@ -47,13 +76,13 @@
                         <input type="hidden" value="@Model.BlogTypeID" id="blogtypeid" />
                         <section class="article-item">
                             <aside class="title" style="line-height:1.5;">
-                                <h4>使用码云和VS托管本地代码</h4>
+                                <h4 th:text="${blog.getTitle()}"> </h4>
                                 <p class="fc-grey fs-14">
                                     <small>
-                                        作者：<a href="javascript:void(0)" target="_blank" class="fc-link">燕十三</a>
+                                        作者：<a href="javascript:void(0)" target="_blank" class="fc-link" th:text="${session.adminMessage.getUname()}"> </a>
                                     </small>
-                                    <small class="ml10">围观群众：<i class="readcount">37</i></small>
-                                    <small class="ml10">更新于 <label>2018-05-22:17:30:24</label> </small>
+                                    <small class="ml10">浏览人数：<i class="readcount" th:text="${blog.getBrowse()}"> </i></small>
+                                    <small class="ml10">更新于 <label th:text="${blog.getUpdtime()}"> </label> </small>
                                 </p>
                             </aside>
                             <div class="time mt10" style="padding-bottom:0;">
@@ -62,18 +91,21 @@
                                 <span class="year fs-18">2018</span>
                             </div>
                             <div class="content artiledetail" style="border-bottom: 1px solid #e1e2e0; padding-bottom: 20px;">
-                                内容自定义
+                                <div id="doc-content">
+                                    <textarea style="display:none;" th:text="${bt.getBt()}">
+                                    </textarea>
+                                </div>
                                 <div class="copyright mt20">
                                     <p class="f-toe fc-black">
-                                        非特殊说明，本文版权归 燕十三 所有，转载请注明出处.
+                                        非特殊说明，本文版权归 赌徒 所有，转载请注明出处.
                                     </p>
                                     <p class="f-toe">
                                         本文标题：
-                                        <a href="javascript:void(0)" class="r-title">使用码云和VS托管本地代码</a>
+                                        <a href="javascript:void(0)" class="r-title" th:text="${blog.getTitle()}"> </a>
                                     </p>
                                     <p class="f-toe">
                                         本文网址：
-                                        <a href="#">https://www.yanshisan.cn/Blog/Read/7</a>
+                                        <a href="#">........</a>
                                     </p>
                                 </div>
                                 <div id="aplayer" style="margin:5px 0"></div>
@@ -83,7 +115,7 @@
                             <div class="bdsharebuttonbox share" data-tag="share_1">
                                 <ul>
                                     <li class="f-praise"><span><a class="s-praise"></a></span></li>
-                                    <li class="f-weinxi"><a class="s-weinxi" data-cmd="weixin"></a></li>
+                                    <li class="f-weinxi"><a class="fa fa-weinxi" data-cmd="weixin"></a></li>
                                     <li class="f-sina"><a class="s-sina" data-cmd="tsina"></a></li>
                                     <li class="f-qq" href="#"><i class="fa fa-qq"></i></li>
                                     <li class="f-qzone"><a class="s-qzone" data-cmd="qzone"></a></li>
@@ -132,10 +164,10 @@
             </div>
         </div>
     </footer>
-    <script src="layui/layui.js"></script>
-    <script src="js/yss/gloable.js"></script>
-    <script src="js/plugins/nprogress.js"></script>
-    <script src="js/pagecomment.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/yss/gloable.js"></script>
+    <script src="/js/plugins/nprogress.js"></script>
+    <script src="/js/pagecomment.js"></script>
     <script>NProgress.start();</script>
     <script> 
         window.onload = function () {
