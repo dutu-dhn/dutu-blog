@@ -6,10 +6,10 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width" />
     <title>首页模板</title>
-    <link href="layui/css/layui.css" rel="stylesheet" type="text/css">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/index_style.css" rel="stylesheet" type="text/css">
-    <link href="css/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="/layui/css/layui.css" rel="stylesheet" type="text/css">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/index_style.css" rel="stylesheet" type="text/css">
+    <link href="/css/animate.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="menu" class="hover_animation menu_open" data-mark="false">
@@ -19,7 +19,7 @@
     </div>
     <div id="navgation" class="navgation navgation_close">
         <ul class="point">
-            <li><a href="#">首页</a></li>
+            <li><a th:href="@{/}">首页</a></li>
             <li><a th:href="@{/article}">博客</a></li>
             <li><a href="message.html">留言</a></li>
         </ul>
@@ -55,21 +55,21 @@
                             <div class="single-news">
                                 <div class="news-head">
                                     <img src="image/1.jpg">
-                                    <a href="#" class="link"><i class="fa fa-link"></i></a>
+                                    <a href="#" th:attr="href='/read/'+${blogByBrowse.get(0).getBid()}"  class="link"><i class="fa fa-link"></i></a>
                                 </div>
                                 <div class="news-content">
                                     <h4>
-                                        <a href="#">
+                                        <a href="#" th:attr="href='/read/'+${blogByBrowse.get(0).getBid()}" th:text="${blogByBrowse.get(0).getTitle()}">
                                             标题
                                         </a>
                                     </h4>
-                                    <div class="date">
+                                    <div class="date" th:text="${blogByBrowse.get(0).getUpdtime()}">
                                         2017年2月16日
                                     </div>
-                                    <p>
+                                    <p th:text="${blogByBrowse.get(0).getDescription()}">
                                         很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
                                     </p>
-                                    <a href="#" class="btn">
+                                    <a th:href="@{/article}" class="btn">
                                         阅读更多 
                                     </a>
                                 </div>
@@ -79,22 +79,22 @@
                             <div class="single-news">
                                 <div class="news-head">
                                     <img src="image/1.jpg">
-                                    <a href="#" class="link"><i class="fa fa-link"></i></a>
+                                    <a href="#" th:attr="href='/read/'+${blogByBrowse.get(1).getBid()}"  class="link"><i class="fa fa-link"></i></a>
                                 </div>
                                 <div class="news-content">
                                     <h4>
-                                        <a href="#">
+                                        <a href="#" th:attr="href='/read/'+${blogByBrowse.get(1).getBid()}" th:text="${blogByBrowse.get(1).getTitle()}">
                                             标题
                                         </a>
                                     </h4>
-                                    <div class="date">
+                                    <div class="date" th:text="${blogByBrowse.get(1).getUpdtime()}">
                                         2017年2月16日
                                     </div>
-                                    <p>
+                                    <p th:text="${blogByBrowse.get(1).getDescription()}">
                                         很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
                                     </p>
-                                    <a href="#" class="btn">
-                                        阅读更多 
+                                    <a th:href="@{/article}" class="btn">
+                                        阅读更多
                                     </a>
                                 </div>
                             </div>
@@ -103,22 +103,22 @@
                             <div class="single-news">
                                 <div class="news-head">
                                     <img src="image/1.jpg">
-                                    <a href="#" class="link"><i class="fa fa-link"></i></a>
+                                    <a href="#" th:attr="href='/read/'+${blogByBrowse.get(2).getBid()}"  class="link"><i class="fa fa-link"></i></a>
                                 </div>
                                 <div class="news-content">
                                     <h4>
-                                        <a href="#">
+                                        <a href="#" th:attr="href='/read/'+${blogByBrowse.get(2).getBid()}" th:text="${blogByBrowse.get(2).getTitle()}">
                                             标题
                                         </a>
                                     </h4>
-                                    <div class="date">
+                                    <div class="date" th:text="${blogByBrowse.get(2).getUpdtime()}">
                                         2017年2月16日
                                     </div>
-                                    <p>
+                                    <p th:text="${blogByBrowse.get(2).getDescription()}">
                                         很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
                                     </p>
-                                    <a href="#" class="btn">
-                                        阅读更多 
+                                    <a th:href="@{/article}" class="btn">
+                                        阅读更多
                                     </a>
                                 </div>
                             </div>
@@ -212,8 +212,8 @@
             </div>
         </div>  
     </footer>
-    <script src="layui/layui.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.dutu.dutublog.controller;
 
+import com.dutu.dutublog.bean.Blable;
 import com.dutu.dutublog.bean.Blog;
 import com.dutu.dutublog.bean.Bt;
 import com.dutu.dutublog.service.BlogTextService;
@@ -39,9 +40,50 @@ public class BlogTextController {
      * @return
      */
     @RequestMapping("/article")
-    public String toArticle(Model model){
+    public String toArticle(Model model) {
+
+        // 文章列表,默认排序
         List<Blog> blogList = blogTextService.getBlogTextList();
-        model.addAttribute("blogList",blogList);
+
+        model.addAttribute("blogList", blogList);
+
+
+        // 热门文章,根据浏览人数排序
+        List<Blog> blogByBrowse = blogTextService.getBlogByBrowse(6);
+
+        // 标签分类
+        List<Blable> blogLable = blogTextService.getBlogLable();
+
+        model.addAttribute("blogByBrowse", blogByBrowse);
+        model.addAttribute("blogLable", blogLable);
+
         return "article";
     }
+
+    /**
+     * 去博客内容页面(根据标签)
+     * @return
+     */
+    @RequestMapping("/article/{blid}")
+    public String toArticleByBlId(@PathVariable("blid") Integer blid, Model model) {
+
+        // 文章列表,按标签取到的
+        List<Blog> blogList = blogTextService.getBlogLableList(blid);
+
+        model.addAttribute("blogList", blogList);
+
+
+        // 热门文章,根据浏览人数排序
+        List<Blog> blogByBrowse = blogTextService.getBlogByBrowse(6);
+
+        // 标签分类
+        List<Blable> blogLable = blogTextService.getBlogLable();
+
+        model.addAttribute("blogByBrowse", blogByBrowse);
+        model.addAttribute("blogLable", blogLable);
+
+        return "article";
+    }
+
+
 }

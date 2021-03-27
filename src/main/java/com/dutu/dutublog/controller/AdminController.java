@@ -1,8 +1,10 @@
 package com.dutu.dutublog.controller;
 
 import com.dutu.dutublog.bean.Admin;
+import com.dutu.dutublog.bean.Blog;
 import com.dutu.dutublog.bean.Bt;
 import com.dutu.dutublog.service.AdminService;
+import com.dutu.dutublog.service.BlogTextService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author dutu
@@ -23,6 +26,8 @@ import javax.servlet.http.HttpSession;
 public class AdminController {
     @Autowired
     AdminService adminService;
+    @Autowired
+    BlogTextService blogTextService;
 
     /**
      * 开局拿到admin的用户数据
@@ -34,6 +39,11 @@ public class AdminController {
         // 把拿到的admin放到model中
        // model.addAttribute("adminMessage",adminMessage);
         session.setAttribute("adminMessage",adminMessage);
+
+        List<Blog> blogByBrowse = blogTextService.getBlogByBrowse(3);
+        model.addAttribute("blogByBrowse",blogByBrowse);
+
+
         return "index";
     }
 

@@ -1,5 +1,6 @@
 package com.dutu.dutublog.service;
 
+import com.dutu.dutublog.bean.Blable;
 import com.dutu.dutublog.bean.Blog;
 import com.dutu.dutublog.bean.Bt;
 
@@ -16,4 +17,10 @@ public interface BlogTextService {
     List<Blog> getBlogTextList();
 
     Blog getBlogTextById(Integer btid);
+
+    List<Blog> getBlogByBrowse(Integer limit);
+
+    List<Blable> getBlogLable();
+
+    List<Blog> getBlogLableList(Integer blid);
 }

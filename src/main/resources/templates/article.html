@@ -21,11 +21,11 @@
     <header class="gird-header">
         <div class="header-fixed">
             <div class="header-inner">
-                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.Yss</a>
+                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.dutu</a>
                 <nav class="nav" id="nav">
                     <ul>
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="article.html">博客</a></li>
+                        <li><a th:href="@{/}">首页</a></li>
+                        <li><a th:href="@{/article}">博客</a></li>
                         <li><a href="message.html">留言</a></li>
                         <li><a href="link.html">友链</a></li>
                     </ul>
@@ -100,14 +100,14 @@
 			    		</div>
 			    		<ul class="category mt20" id="category">
 				        	<li data-index="0" class="slider"></li>
-				        	<li data-index="1"><a href="/Blog/Article">全部文章</a></li>
-				            <li data-index="2"><a href="/Blog/Article/1/">个人日记</a></li>
-				            <li data-index="3"><a href="/Blog/Article/2/">HTML5&amp;CSS3</a></li>
-				            <li data-index="4"><a href="/Blog/Article/3/">JavaScript</a></li>
-				            <li data-index="5"><a href="/Blog/Article/4/">ASP.NET MVC</a></li>
-				            <li data-index="6"><a href="/Blog/Article/5/">其它</a></li>
+				        	<li data-index="1"><a th:href="@{/article}">全部文章</a></li>
+							<div th:each="blable:${blogLable}">
+								<li data-index="2" th:attr="data-index=${blable.getBlid()+1}"><a th:href="@{/article/{blid}(blid=${blable.getBlid()})}" th:text="${blable.getBlname()}"></a></li>
+							</div>
 			    		</ul>
 					</div>
+
+<!--待修改-->
 					<!--右边悬浮 平板或手机设备显示-->
 					<div class="category-toggle"><i class="layui-icon">&#xe603;</i></div>
 					<div class="article-category">
@@ -125,18 +125,14 @@
 					    <h5 class="other-item-title">热门文章</h5>
 					    <div class="inner">
 					        <ul class="hot-list-article">
-					                <li> <a href="/Blog/Read/9">2018最新版QQ音乐api调用</a></li>
-					                <li> <a href="/Blog/Read/12">模板分享</a></li>
-					                <li> <a href="/Blog/Read/13">逆水寒</a></li>
-					                <li> <a href="/Blog/Read/4">序章</a></li>
-					                <li> <a href="/Blog/Read/7">解决百度分享插件不支持https</a></li>
-					                <li> <a href="/Blog/Read/11">使用码云和VS托管本地代码</a></li>
-					                <li> <a href="/Blog/Read/14">MUI框架-快速开发APP</a></li>
-					                <li> <a href="/Blog/Read/8">NPOI导入导出Excel</a></li>
+								<li> <a th:href="@{/read/{btid}(btid=${blogByBrowse.get(0).getBid()})}" th:text="${blogByBrowse.get(0).getTitle()}" > </a></li>
+								<li> <a th:href="@{/read/{btid}(btid=${blogByBrowse.get(1).getBid()})}" th:text="${blogByBrowse.get(1).getTitle()}" > </a></li>
+								<li> <a th:href="@{/read/{btid}(btid=${blogByBrowse.get(2).getBid()})}" th:text="${blogByBrowse.get(2).getTitle()}" > </a></li>
+								<li> <a th:href="@{/read/{btid}(btid=${blogByBrowse.get(3).getBid()})}" th:text="${blogByBrowse.get(3).getTitle()}" > </a></li>
 					        </ul>
 					    </div>
 					</div>
-					<div class="other-item">
+<!--					<div class="other-item">
 					    <h5 class="other-item-title">置顶推荐</h5>
 					    <div class="inner">
 					        <ul class="hot-list-article">
@@ -145,7 +141,7 @@
 					                <li> <a href="/Blog/Read/9">2018最新版QQ音乐api调用</a></li>
 					        </ul>
 					    </div>
-					</div>
+					</div>-->
 					<div class="other-item">
 					    <h5 class="other-item-title">最近访客</h5>
 					    <div class="inner">
