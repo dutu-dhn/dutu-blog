@@ -6,8 +6,9 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width" />
     <title>文章阅读</title>
-<!--    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
 
 
     <link rel="stylesheet" href="/layui/css/layui.css" />
@@ -48,17 +49,21 @@
     <header class="gird-header">
         <div class="header-fixed">
             <div class="header-inner">
-                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.Yss</a>
+                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.dutu</a>
                 <nav class="nav" id="nav">
                     <ul>
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="article.html">博客</a></li>
+                        <li><a th:href="@{/index.html}">首页</a></li>
+                        <li><a th:href="@{/article.html}">博客</a></li>
                         <li><a href="message.html">留言</a></li>
                         <li><a href="link.html">友链</a></li>
                     </ul>
                 </nav>
-                <a href="#" class="blog-user">
-                    <i class="fa fa-qq"></i>
+                <a th:if="${session.user} eq null" onclick="login()"class="blog-user">
+                    <i class="fa fa-weibo"></i>
+                </a>
+                <a th:if="${session.user} ne null"   class="blog-user">
+                    <img src="image/lable/deaflut.png" onclick="logout()" th:attr="src=''+${session.user.get('profile_image_url')}" >
+
                 </a>
                 <a class="phone-menu">
                     <i></i>
@@ -86,15 +91,16 @@
                                 </p>
                             </aside>
                             <div class="time mt10" style="padding-bottom:0;">
-                                <span class="day">22</span>
-                                <span class="month fs-18">5<small class="fs-14">月</small></span>
-                                <span class="year fs-18">2018</span>
+                                <span class="day" th:text="${blog.getUpdtime().substring(8,10)}">21</span>
+                                <span class="month fs-18">1
+									<span class="fs-14" th:text="${blog.getUpdtime().substring(5,7)}">月</span>
+								</span>
+                                <span class="year fs-18 ml10" th:text="${blog.getUpdtime().substring(0,4)}"> 2019</span>
+                            </div>
+                            <div id="doc-content" style="width: 96.85%">
+                                <textarea style="display:none;" th:text="${bt.getBt()}"></textarea>
                             </div>
                             <div class="content artiledetail" style="border-bottom: 1px solid #e1e2e0; padding-bottom: 20px;">
-                                <div id="doc-content">
-                                    <textarea style="display:none;" th:text="${bt.getBt()}">
-                                    </textarea>
-                                </div>
                                 <div class="copyright mt20">
                                     <p class="f-toe fc-black">
                                         非特殊说明，本文版权归 赌徒 所有，转载请注明出处.
@@ -114,11 +120,10 @@
                             </div>
                             <div class="bdsharebuttonbox share" data-tag="share_1">
                                 <ul>
-                                    <li class="f-praise"><span><a class="s-praise"></a></span></li>
-                                    <li class="f-weinxi"><a class="fa fa-weinxi" data-cmd="weixin"></a></li>
-                                    <li class="f-sina"><a class="s-sina" data-cmd="tsina"></a></li>
+                                    <li class="f-praise"><span><i class="fa fa-thumbs-o-up" style="color:#f46753"></i></span></li>
+                                    <li class="f-weinxi"><i class="fa fa-weixin" style="color:#5ac64f"></i></li>
+                                    <li class="f-sina"><i class="fa fa-weibo" style="color:#ff7171"></i></li>
                                     <li class="f-qq" href="#"><i class="fa fa-qq"></i></li>
-                                    <li class="f-qzone"><a class="s-qzone" data-cmd="qzone"></a></li>
                                 </ul>
                             </div>
                             <div class="f-cb"></div>
@@ -158,7 +163,6 @@
                         <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
                     </div>
                     <p class="mt05">
-                        Copyright &copy; 2018-2018 燕十三 All Rights Reserved V.3.1.3 蜀ICP备18008600号
                     </p>
                 </div>
             </div>
@@ -174,5 +178,44 @@
             NProgress.done();
         };
     </script>
+
+<!--    <script>
+        var _RegisterBtn = function() {}
+        _RegisterBtn.prototype = {
+            /**
+             * 第三方QQ登录
+             */
+/*            loginQQ: function() {
+                let clientId = '101528188';
+                let redirect_uri = 'http://22815l1b14.iask.in/thirdLogin/qqLogin';
+                let state = '123456789';
+                window.open(`https://graph.qq.com/oauth2.0/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}`);
+            },*/
+
+            /**
+             * 微博登录
+             */
+            weiboLogin: function(){
+                let weiboAppId = '3452297360';
+                let weiboAuthPath = 'http://dutu.link/thirdLogin/weiboLogin';
+                window.open(`https://api.weibo.com/oauth2/authorize?client_id=${weiboAppId}&response_type=code&redirect_uri=${encodeURIComponent(weiboAuthPath)}`);
+            },
+
+            /**
+             * 登录的回调函数
+             */
+            loginCallBack: function(data) {
+                // 登录成功
+                if (data.code == '1') {
+                    window.top.location.reload();
+                } else {
+                    // 登录失败
+                    layer.alert(data.message, {
+                        icon: '2'
+                    });
+        }}
+            }
+        var oRegisterBtn = new _RegisterBtn();
+    </script>-->
 </body>
 </html>

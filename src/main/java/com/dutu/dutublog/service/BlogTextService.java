@@ -23,4 +23,6 @@ public interface BlogTextService {
     List<Blable> getBlogLable();
 
     List<Blog> getBlogLableList(Integer blid);
+
+    int updBrowse(Blog blog);
 }

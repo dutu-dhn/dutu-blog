@@ -33,7 +33,7 @@ public class AdminController {
      * 开局拿到admin的用户数据
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/index.html")
     public String getAdminMessage(Model model, HttpSession session){
         Admin adminMessage = adminService.getAdminMessage();
         // 把拿到的admin放到model中
@@ -47,21 +47,19 @@ public class AdminController {
         return "index";
     }
 
-
-
-    @GetMapping("/Edit")
-    public String toEdit(){
-        return "textpostmarkdown";
+    @GetMapping("/")
+    public String toIndex(){
+        return "redirect:/index.html";
     }
 
 
-    @PostMapping("/savebt")
-    public String saveBt(Bt bt){
 
 
-        return "textpostmarkdown";
+
+    @GetMapping("/link.html")
+    public String tolink(){
+
+        return "link";
     }
-
-
 
 }

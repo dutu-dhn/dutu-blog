@@ -68,4 +68,12 @@ public class BlogTextServiceImpl implements BlogTextService {
         List<Blog> blogList = blogMapper.selectList(wrapper);
         return blogList;
     }
+
+    @Override
+    public int updBrowse(Blog blog) {
+        QueryWrapper<Blog> wrapper = Wrappers.query();
+        wrapper.eq("bid",blog.getBid());
+        blogMapper.update(blog,wrapper);
+        return blogMapper.updateById(blog);
+    }
 }

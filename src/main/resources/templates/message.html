@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -30,8 +30,12 @@
                         <li><a href="link.html">友链</a></li>
                     </ul>
                 </nav>
-                <a href="#" class="blog-user">
-                    <i class="fa fa-qq"></i>
+                <a th:if="${session.user} eq null" onclick="login()"class="blog-user">
+                    <i class="fa fa-weibo"></i>
+                </a>
+                <a th:if="${session.user} ne null"   class="blog-user">
+                    <img src="image/lable/deaflut.png" onclick="logout()" th:attr="src=''+${session.user.get('profile_image_url')}" >
+
                 </a>
                 <a class="phone-menu">
                     <i></i>
@@ -51,7 +55,7 @@
             </p>
         </section>
         <div class="textarea-wrap message" id="textarea-wrap">
-            <form class="layui-form blog-editor" action="">
+            <form class="layui-form blog-editor" th:action="@{/message/add}" n="" method="get">
                 <div class="layui-form-item">
                     <textarea name="editorContent" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
                 </div>

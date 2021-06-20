@@ -21,3 +21,5 @@ loggoing:
           modules:
             oa:
               mapper=debug:
+server:
+  port: 80

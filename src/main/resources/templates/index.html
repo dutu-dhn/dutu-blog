@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width" />
-    <title>首页模板</title>
+    <title>首页</title>
     <link href="/layui/css/layui.css" rel="stylesheet" type="text/css">
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/css/index_style.css" rel="stylesheet" type="text/css">
@@ -20,7 +20,7 @@
     <div id="navgation" class="navgation navgation_close">
         <ul class="point">
             <li><a th:href="@{/}">首页</a></li>
-            <li><a th:href="@{/article}">博客</a></li>
+            <li><a th:href="@{/article.html}">博客</a></li>
             <li><a href="message.html">留言</a></li>
         </ul>
         <div class="logo"><a>Mr.dutu</a></div>
@@ -31,7 +31,7 @@
                 <div class="nav wow zoomIn" data-wow-duration="2s">
                     <h1 th:text="${session.adminMessage.getUname()}"></h1>
                     <p th:text="${session.adminMessage.getSignature()}"></p>
-                    <a class="layui-btn layui-btn-normal" style="margin-top: 20px" th:href="@{/article}">Enter Blog</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-radius" style="margin-top: 20px;color: #1c4956" th:href="@{/article.html}">Enter Blog</a>
                 </div>
                 <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
             </div>
@@ -54,7 +54,7 @@
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">
                             <div class="single-news">
                                 <div class="news-head">
-                                    <img src="image/1.jpg">
+                                    <img src="https://dutublog.oss-cn-hangzhou.aliyuncs.com/blog/lable1.jpg">
                                     <a href="#" th:attr="href='/read/'+${blogByBrowse.get(0).getBid()}"  class="link"><i class="fa fa-link"></i></a>
                                 </div>
                                 <div class="news-content">
@@ -69,7 +69,7 @@
                                     <p th:text="${blogByBrowse.get(0).getDescription()}">
                                         很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
                                     </p>
-                                    <a th:href="@{/article}" class="btn">
+                                    <a th:href="@{/article.html}" class="btn">
                                         阅读更多 
                                     </a>
                                 </div>
@@ -78,7 +78,7 @@
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".2s" style="padding: 0 10px">
                             <div class="single-news">
                                 <div class="news-head">
-                                    <img src="image/1.jpg">
+                                    <img src="https://dutublog.oss-cn-hangzhou.aliyuncs.com/blog/lable2.jpg">
                                     <a href="#" th:attr="href='/read/'+${blogByBrowse.get(1).getBid()}"  class="link"><i class="fa fa-link"></i></a>
                                 </div>
                                 <div class="news-content">
@@ -93,7 +93,7 @@
                                     <p th:text="${blogByBrowse.get(1).getDescription()}">
                                         很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
                                     </p>
-                                    <a th:href="@{/article}" class="btn">
+                                    <a th:href="@{/article.html}" class="btn">
                                         阅读更多
                                     </a>
                                 </div>
@@ -102,7 +102,7 @@
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" data-wow-delay=".4s" style="padding: 0 10px">
                             <div class="single-news">
                                 <div class="news-head">
-                                    <img src="image/1.jpg">
+                                    <img src="https://dutublog.oss-cn-hangzhou.aliyuncs.com/blog/lable3.jpg">
                                     <a href="#" th:attr="href='/read/'+${blogByBrowse.get(2).getBid()}"  class="link"><i class="fa fa-link"></i></a>
                                 </div>
                                 <div class="news-content">
@@ -117,7 +117,7 @@
                                     <p th:text="${blogByBrowse.get(2).getDescription()}">
                                         很想给你写封信,告诉你这里的天气. 昨夜的那场电影,还有我的心情.
                                     </p>
-                                    <a th:href="@{/article}" class="btn">
+                                    <a th:href="@{/article.html}" class="btn">
                                         阅读更多
                                     </a>
                                 </div>
